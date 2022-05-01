@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
+import './App.css'
 
 
 const useValidation = (value, validations) => {
@@ -79,14 +80,17 @@ const App = () => {
 
 
   return (
-    <div class="main_container">
-      <div class="intro_container">
-        <div class="auth_container">
-          <div class="auth_title">Registration</div>
-          <div class="auth_panel">
-            {(email.isDirty && email.isEmpty) && <div style={{color: 'red'}}>Поле не может быть пустым</div>}
-            {(email.isDirty && email.minLengthError) && <div style={{color: 'red'}}>Неккоректаная длина</div>}
-            {(email.isDirty && email.emailError) && <div style={{color: 'red'}}>Неккоректный емейл</div>}
+    <main>
+      <div class="circle"></div>
+      <div class="register-form-container">
+        <h1 class="form-title">
+          Registration
+        </h1>
+        <div class="form-fields">
+          <div class="form-field">
+            {(email.isDirty && email.isEmpty) && <div style={{color: 'red'}}>The field cannot be empty</div>}
+            {(email.isDirty && email.minLengthError) && <div style={{color: 'red'}}>Incorrect length</div>}
+            {(email.isDirty && email.emailError) && <div style={{color: 'red'}}>Incorrect email</div>}
             <input 
               onChange={e => email.onChange(e)}
               onBlur={e => email.onBlur(e)}
@@ -95,9 +99,11 @@ const App = () => {
               type="text" 
               placeholder='Enter your email...'
             />
-            {(password.isDirty && password.isEmpty) && <div style={{color: 'red'}}>Поле не может быть пустым</div>}
-            {(password.isDirty && password.maxLengthError) && <div style={{color: 'red'}}>Слишком длинное пароль</div>}
-            {(password.isDirty && password.minLengthError) && <div style={{color: 'red'}}>Неккоректаная длина</div>}
+          </div>
+          <div class="form-field">
+            {(password.isDirty && password.isEmpty) && <div style={{color: 'red'}}>The field cannot be empty</div>}
+            {(password.isDirty && password.maxLengthError) && <div style={{color: 'red'}}>Password is too long</div>}
+            {(password.isDirty && password.minLengthError) && <div style={{color: 'red'}}>Incorrect length</div>}
             <input 
               onChange={e => password.onChange(e)}
               onBlur={e => password.onBlur(e)}
@@ -106,11 +112,15 @@ const App = () => {
               type="password" 
               placeholder='Enter your password...'
             />
-            <button disabled={!email.inputValid || !password.inputValid} type="submit">Registation</button>
+          </div>
+          <div class="form-buttons">
+            <button disabled={!email.inputValid || !password.inputValid} type="submit" class="button">Registration</button>
+            <div class="divider">или</div>
+            <a href="#" class="button button-google">Google</a>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
